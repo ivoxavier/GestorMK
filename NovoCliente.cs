@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace GestorMK
 {
-    public partial class Form1 : Form
+    public partial class NovoCliente : Form
     {
-        public Form1()
+        public NovoCliente()
         {
             InitializeComponent();
-        }
-
-        private void manutençaoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
