@@ -7,19 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestorMK.Properties;
 
 namespace GestorMK
 {
-    public partial class Registar : Form
+    public partial class RegistarForm : Form
     {
-        public Registar()
+        public RegistarForm()
         {
             InitializeComponent();
+
+            if(Settings.Default.isFirstUsage)
+            {
+                var bd = new CriaBaseDados();
+                bd.InicializaBD();
+
+                Settings.Default.isFirstUsage = false;
+
+            }
+
+
+
         }
 
         private void novoClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NovoCliente novoCliente = new NovoCliente();
+            NovoClienteForm novoCliente = new NovoClienteForm();
 
             novoCliente.ShowDialog();
 

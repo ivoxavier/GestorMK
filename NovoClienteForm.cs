@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GestorMK
 {
-    public partial class NovoCliente : Form
+    public partial class NovoClienteForm : Form
     {
-        public NovoCliente()
+        public NovoClienteForm()
         {
             InitializeComponent();
         }

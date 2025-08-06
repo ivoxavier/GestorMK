@@ -1,6 +1,6 @@
 ﻿namespace GestorMK
 {
-    partial class Registar
+    partial class RegistarForm
     {
         /// <summary>
         /// Variável de designer necessária.

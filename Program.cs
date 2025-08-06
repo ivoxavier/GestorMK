@@ -16,7 +16,7 @@ namespace GestorMK
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Registar());
+            Application.Run(new RegistarForm());
         }
     }
 }
