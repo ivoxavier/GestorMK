@@ -10,6 +10,8 @@ namespace GestorMK.Model
     public class Cliente
     {
        
+        public int ID { get; set; }
+
         [Required]
         [StringLength(45,ErrorMessage ="O nome não pode ter mais do que 45 caracteres",MinimumLength = 1)]
         public required string Nome { get; set; }

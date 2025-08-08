@@ -45,6 +45,40 @@ namespace GestorMK.Repository
             }
         }
 
+
+
+        public string ObterNomeCliente(Int32 clienteID)
+        {
+
+            string nomeCliente = string.Empty;
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+
+                
+                command.CommandText = @"SELECT Nome FROM Clientes WHERE id = @id";
+
+                
+                command.Parameters.AddWithValue("@id", clienteID);
+
+                var resultado = command.ExecuteScalar();
+
+                if (resultado != null)
+                {
+                    nomeCliente = resultado.ToString();
+                }
+            }
+
+            return nomeCliente;
+        }
+
+
+
+
+
         public void Adicionar(Cliente cliente)
         {
             using (var connection = new SqliteConnection(ConnectionString))
@@ -69,6 +103,43 @@ namespace GestorMK.Repository
             }
         }
 
+
+        public List<Cliente> ObterListaCliente()
+        {
+
+            var clientes = new List<Cliente>();
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = @"
+                    SELECT id, Nome FROM Clientes;";
+
+
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var cliente = new Cliente
+                        {
+                            ID = reader.GetInt32(0),
+                            Nome = reader.GetString(1),
+                            Morada = "",
+                            Email = "",
+                            Telemovel = ""
+                        };
+                        clientes.Add(cliente);
+                    }
+
+                }
+
+
+            }
+            return clientes;
+        }
 
     }
 }
