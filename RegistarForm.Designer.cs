@@ -28,299 +28,340 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.novoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listagensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manutençaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtBox_nCliente = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBox_produto = new System.Windows.Forms.TextBox();
-            this.txtBox_cliente = new System.Windows.Forms.TextBox();
-            this.txtBox_nProduto = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button2 = new System.Windows.Forms.Button();
-            this.txtBox_nFicha = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            clientesToolStripMenuItem = new ToolStripMenuItem();
+            novoClienteToolStripMenuItem = new ToolStripMenuItem();
+            produtosToolStripMenuItem = new ToolStripMenuItem();
+            listagensToolStripMenuItem = new ToolStripMenuItem();
+            clientesToolStripMenuItem1 = new ToolStripMenuItem();
+            produtosToolStripMenuItem1 = new ToolStripMenuItem();
+            manutençaoToolStripMenuItem = new ToolStripMenuItem();
+            panel1 = new Panel();
+            dataGridView1 = new DataGridView();
+            button1 = new Button();
+            txtBox_nCliente = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            txtBox_produto = new TextBox();
+            txtBox_cliente = new TextBox();
+            txtBox_nProduto = new TextBox();
+            groupBox1 = new GroupBox();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
+            button2 = new Button();
+            txtBox_nFicha = new TextBox();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            novoProdutoToolStripMenuItem = new ToolStripMenuItem();
+            ajustarInventárioToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientesToolStripMenuItem,
-            this.produtosToolStripMenuItem,
-            this.manutençaoToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.Items.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, listagensToolStripMenuItem, manutençaoToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Padding = new Padding(7, 2, 0, 2);
+            menuStrip1.Size = new Size(933, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
             // clientesToolStripMenuItem
             // 
-            this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.novoClienteToolStripMenuItem,
-            this.listagensToolStripMenuItem});
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.clientesToolStripMenuItem.Text = "Clientes";
+            clientesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { novoClienteToolStripMenuItem });
+            clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            clientesToolStripMenuItem.Size = new Size(61, 20);
+            clientesToolStripMenuItem.Text = "Clientes";
             // 
             // novoClienteToolStripMenuItem
             // 
-            this.novoClienteToolStripMenuItem.Name = "novoClienteToolStripMenuItem";
-            this.novoClienteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.novoClienteToolStripMenuItem.Text = "Novo Cliente";
-            this.novoClienteToolStripMenuItem.Click += new System.EventHandler(this.novoClienteToolStripMenuItem_Click);
-            // 
-            // listagensToolStripMenuItem
-            // 
-            this.listagensToolStripMenuItem.Name = "listagensToolStripMenuItem";
-            this.listagensToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.listagensToolStripMenuItem.Text = "Listagens";
+            novoClienteToolStripMenuItem.Name = "novoClienteToolStripMenuItem";
+            novoClienteToolStripMenuItem.Size = new Size(143, 22);
+            novoClienteToolStripMenuItem.Text = "Novo Cliente";
+            novoClienteToolStripMenuItem.Click += novoClienteToolStripMenuItem_Click;
             // 
             // produtosToolStripMenuItem
             // 
-            this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
-            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.produtosToolStripMenuItem.Text = "Produtos";
+            produtosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { novoProdutoToolStripMenuItem, ajustarInventárioToolStripMenuItem });
+            produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
+            produtosToolStripMenuItem.Size = new Size(67, 20);
+            produtosToolStripMenuItem.Text = "Produtos";
+            // 
+            // listagensToolStripMenuItem
+            // 
+            listagensToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem1, produtosToolStripMenuItem1 });
+            listagensToolStripMenuItem.Name = "listagensToolStripMenuItem";
+            listagensToolStripMenuItem.Size = new Size(68, 20);
+            listagensToolStripMenuItem.Text = "Listagens";
+            // 
+            // clientesToolStripMenuItem1
+            // 
+            clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            clientesToolStripMenuItem1.Size = new Size(122, 22);
+            clientesToolStripMenuItem1.Text = "Clientes";
+            // 
+            // produtosToolStripMenuItem1
+            // 
+            produtosToolStripMenuItem1.Name = "produtosToolStripMenuItem1";
+            produtosToolStripMenuItem1.Size = new Size(122, 22);
+            produtosToolStripMenuItem1.Text = "Produtos";
             // 
             // manutençaoToolStripMenuItem
             // 
-            this.manutençaoToolStripMenuItem.Name = "manutençaoToolStripMenuItem";
-            this.manutençaoToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
-            this.manutençaoToolStripMenuItem.Text = "Manutenção";
+            manutençaoToolStripMenuItem.Name = "manutençaoToolStripMenuItem";
+            manutençaoToolStripMenuItem.Size = new Size(86, 20);
+            manutençaoToolStripMenuItem.Text = "Manutenção";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(12, 141);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 234);
-            this.panel1.TabIndex = 1;
+            panel1.Controls.Add(dataGridView1);
+            panel1.Location = new Point(14, 163);
+            panel1.Margin = new Padding(4, 3, 4, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(905, 270);
+            panel1.TabIndex = 1;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(767, 228);
-            this.dataGridView1.TabIndex = 0;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(7, 3);
+            dataGridView1.Margin = new Padding(4, 3, 4, 3);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(895, 263);
+            dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(713, 395);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 43);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Fechar Ficha";
-            this.button1.UseVisualStyleBackColor = true;
+            button1.Location = new Point(832, 456);
+            button1.Margin = new Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(88, 50);
+            button1.TabIndex = 2;
+            button1.Text = "Fechar Ficha";
+            button1.UseVisualStyleBackColor = true;
             // 
             // txtBox_nCliente
             // 
-            this.txtBox_nCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBox_nCliente.Location = new System.Drawing.Point(69, 3);
-            this.txtBox_nCliente.Name = "txtBox_nCliente";
-            this.txtBox_nCliente.Size = new System.Drawing.Size(59, 20);
-            this.txtBox_nCliente.TabIndex = 3;
+            txtBox_nCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBox_nCliente.Location = new Point(81, 3);
+            txtBox_nCliente.Margin = new Padding(4, 3, 4, 3);
+            txtBox_nCliente.Name = "txtBox_nCliente";
+            txtBox_nCliente.Size = new Size(67, 23);
+            txtBox_nCliente.TabIndex = 3;
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "N. Cliente";
+            label1.Anchor = AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new Point(4, 8);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(59, 15);
+            label1.TabIndex = 4;
+            label1.Text = "N. Cliente";
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "N.Produto";
+            label2.Anchor = AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.Location = new Point(4, 41);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 15);
+            label2.TabIndex = 5;
+            label2.Text = "N.Produto";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.73529F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.26471F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
-            this.tableLayoutPanel1.Controls.Add(this.txtBox_produto, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtBox_cliente, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtBox_nProduto, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtBox_nCliente, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 33);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 56);
-            this.tableLayoutPanel1.TabIndex = 6;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.73529F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.26471F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 167F));
+            tableLayoutPanel1.Controls.Add(txtBox_produto, 2, 1);
+            tableLayoutPanel1.Controls.Add(txtBox_cliente, 2, 0);
+            tableLayoutPanel1.Controls.Add(txtBox_nProduto, 1, 1);
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(txtBox_nCliente, 1, 0);
+            tableLayoutPanel1.Controls.Add(label2, 0, 1);
+            tableLayoutPanel1.Location = new Point(14, 38);
+            tableLayoutPanel1.Margin = new Padding(4, 3, 4, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 23F));
+            tableLayoutPanel1.Size = new Size(320, 65);
+            tableLayoutPanel1.TabIndex = 6;
             // 
             // txtBox_produto
             // 
-            this.txtBox_produto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBox_produto.Location = new System.Drawing.Point(134, 31);
-            this.txtBox_produto.Name = "txtBox_produto";
-            this.txtBox_produto.ReadOnly = true;
-            this.txtBox_produto.Size = new System.Drawing.Size(137, 20);
-            this.txtBox_produto.TabIndex = 8;
+            txtBox_produto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBox_produto.Location = new Point(156, 35);
+            txtBox_produto.Margin = new Padding(4, 3, 4, 3);
+            txtBox_produto.Name = "txtBox_produto";
+            txtBox_produto.ReadOnly = true;
+            txtBox_produto.Size = new Size(160, 23);
+            txtBox_produto.TabIndex = 8;
             // 
             // txtBox_cliente
             // 
-            this.txtBox_cliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBox_cliente.Location = new System.Drawing.Point(134, 3);
-            this.txtBox_cliente.Name = "txtBox_cliente";
-            this.txtBox_cliente.ReadOnly = true;
-            this.txtBox_cliente.Size = new System.Drawing.Size(137, 20);
-            this.txtBox_cliente.TabIndex = 7;
+            txtBox_cliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBox_cliente.Location = new Point(156, 3);
+            txtBox_cliente.Margin = new Padding(4, 3, 4, 3);
+            txtBox_cliente.Name = "txtBox_cliente";
+            txtBox_cliente.ReadOnly = true;
+            txtBox_cliente.Size = new Size(160, 23);
+            txtBox_cliente.TabIndex = 7;
             // 
             // txtBox_nProduto
             // 
-            this.txtBox_nProduto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBox_nProduto.Location = new System.Drawing.Point(69, 31);
-            this.txtBox_nProduto.Name = "txtBox_nProduto";
-            this.txtBox_nProduto.Size = new System.Drawing.Size(59, 20);
-            this.txtBox_nProduto.TabIndex = 7;
+            txtBox_nProduto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBox_nProduto.Location = new Point(81, 35);
+            txtBox_nProduto.Margin = new Padding(4, 3, 4, 3);
+            txtBox_nProduto.Name = "txtBox_nProduto";
+            txtBox_nProduto.Size = new Size(67, 23);
+            txtBox_nProduto.TabIndex = 7;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 93);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(271, 45);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tipo";
+            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Location = new Point(14, 107);
+            groupBox1.Margin = new Padding(4, 3, 4, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(4, 3, 4, 3);
+            groupBox1.Size = new Size(316, 52);
+            groupBox1.TabIndex = 7;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Tipo";
             // 
             // radioButton2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(72, 19);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(79, 17);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Emprestimo";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(84, 22);
+            radioButton2.Margin = new Padding(4, 3, 4, 3);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(89, 19);
+            radioButton2.TabIndex = 9;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Emprestimo";
+            radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(56, 17);
-            this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Venda";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(7, 22);
+            radioButton1.Margin = new Padding(4, 3, 4, 3);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(57, 19);
+            radioButton1.TabIndex = 8;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Venda";
+            radioButton1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(289, 112);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Adicionar";
-            this.button2.UseVisualStyleBackColor = true;
+            button2.Location = new Point(337, 129);
+            button2.Margin = new Padding(4, 3, 4, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(88, 27);
+            button2.TabIndex = 8;
+            button2.Text = "Adicionar";
+            button2.UseVisualStyleBackColor = true;
             // 
             // txtBox_nFicha
             // 
-            this.txtBox_nFicha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBox_nFicha.Location = new System.Drawing.Point(684, 84);
-            this.txtBox_nFicha.Name = "txtBox_nFicha";
-            this.txtBox_nFicha.ReadOnly = true;
-            this.txtBox_nFicha.Size = new System.Drawing.Size(100, 20);
-            this.txtBox_nFicha.TabIndex = 10;
+            txtBox_nFicha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBox_nFicha.Location = new Point(798, 97);
+            txtBox_nFicha.Margin = new Padding(4, 3, 4, 3);
+            txtBox_nFicha.Name = "txtBox_nFicha";
+            txtBox_nFicha.ReadOnly = true;
+            txtBox_nFicha.Size = new Size(116, 23);
+            txtBox_nFicha.TabIndex = 10;
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(631, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "N. Ficha";
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Location = new Point(736, 100);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(50, 15);
+            label3.TabIndex = 11;
+            label3.Text = "N. Ficha";
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(679, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 22);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "GESTORMK";
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 13.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(792, 36);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(121, 22);
+            label4.TabIndex = 12;
+            label4.Text = "GESTORMK";
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(716, 53);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "por: Ivo Xavier";
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label5.AutoSize = true;
+            label5.Location = new Point(835, 61);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(82, 15);
+            label5.TabIndex = 13;
+            label5.Text = "por: Ivo Xavier";
             // 
-            // Registar
+            // novoProdutoToolStripMenuItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtBox_nFicha);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
-            this.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Registar";
-            this.Text = "Menu";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            novoProdutoToolStripMenuItem.Name = "novoProdutoToolStripMenuItem";
+            novoProdutoToolStripMenuItem.Size = new Size(180, 22);
+            novoProdutoToolStripMenuItem.Text = "Novo Produto";
+            // 
+            // ajustarInventárioToolStripMenuItem
+            // 
+            ajustarInventárioToolStripMenuItem.Name = "ajustarInventárioToolStripMenuItem";
+            ajustarInventárioToolStripMenuItem.Size = new Size(180, 22);
+            ajustarInventárioToolStripMenuItem.Text = "Ajustar Inventário";
+            // 
+            // RegistarForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(933, 519);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(txtBox_nFicha);
+            Controls.Add(button2);
+            Controls.Add(groupBox1);
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(button1);
+            Controls.Add(panel1);
+            Controls.Add(menuStrip1);
+            ImeMode = ImeMode.Disable;
+            MainMenuStrip = menuStrip1;
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "RegistarForm";
+            Text = "Menu";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -331,7 +372,6 @@
         private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manutençaoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem novoClienteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listagensToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtBox_nCliente;
@@ -350,6 +390,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private ToolStripMenuItem listagensToolStripMenuItem;
+        private ToolStripMenuItem clientesToolStripMenuItem1;
+        private ToolStripMenuItem produtosToolStripMenuItem1;
+        private ToolStripMenuItem novoProdutoToolStripMenuItem;
+        private ToolStripMenuItem ajustarInventárioToolStripMenuItem;
     }
 }
 

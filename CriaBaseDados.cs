@@ -39,11 +39,25 @@ namespace GestorMK
 	                ""Morada""	TEXT NOT NULL,
 	                ""Email""	TEXT,
 	                ""Telemovel""	TEXT,
-	                PRIMARY KEY(""id"" AUTOINCREMENT)) ";
+	                PRIMARY KEY(""id"" AUTOINCREMENT)); 
+
+                    
+";
 
                     cmd.ExecuteNonQuery();
 
+                    cmd.CommandText = @"
+                            CREATE TABLE IF NOT EXISTS Produtos (
+	                                ""id""	INTEGER NOT NULL UNIQUE,
+	                                ""Nome""	TEXT NOT NULL,
+	                                ""Categoria""	TEXT NOT NULL,
+	                                ""Preco""	NUMERIC NOT NULL,
+	                                ""MargemLucro""	NUMERIC NOT NULL,
+	                                ""Quantidade""	INTEGER NOT NULL,
+	                                PRIMARY KEY(""id"" AUTOINCREMENT));
 
+";
+                    cmd.ExecuteNonQuery();
                 }
 
                 catch (Exception ex) 

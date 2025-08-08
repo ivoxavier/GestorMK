@@ -26,7 +26,8 @@ namespace GestorMK
 
             }
 
-
+          //  var bdd = new CriaBaseDados();
+         //   bdd.InicializaBD();
 
         }
 

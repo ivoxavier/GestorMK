@@ -37,9 +37,9 @@
             txtBox_nvClienteMorada = new TextBox();
             txtBox_nvClienteEmail = new TextBox();
             txtBox_nvClienteTelemovel = new TextBox();
-            button1 = new Button();
+            btn_Gravar = new Button();
             label5 = new Label();
-            label6 = new Label();
+            lbl_nCliente = new Label();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -147,15 +147,16 @@
             txtBox_nvClienteTelemovel.Size = new Size(332, 23);
             txtBox_nvClienteTelemovel.TabIndex = 4;
             // 
-            // button1
+            // btn_Gravar
             // 
-            button1.Location = new Point(356, 267);
-            button1.Margin = new Padding(4, 3, 4, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(88, 45);
-            button1.TabIndex = 1;
-            button1.Text = "Gravar";
-            button1.UseVisualStyleBackColor = true;
+            btn_Gravar.Location = new Point(356, 267);
+            btn_Gravar.Margin = new Padding(4, 3, 4, 3);
+            btn_Gravar.Name = "btn_Gravar";
+            btn_Gravar.Size = new Size(88, 45);
+            btn_Gravar.TabIndex = 1;
+            btn_Gravar.Text = "Gravar";
+            btn_Gravar.UseVisualStyleBackColor = true;
+            btn_Gravar.Click += btn_Gravar_Click;
             // 
             // label5
             // 
@@ -167,24 +168,24 @@
             label5.TabIndex = 2;
             label5.Text = "N. Cliente:";
             // 
-            // label6
+            // lbl_nCliente
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(86, 182);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(19, 15);
-            label6.TabIndex = 3;
-            label6.Text = "33";
+            lbl_nCliente.AutoSize = true;
+            lbl_nCliente.Location = new Point(86, 182);
+            lbl_nCliente.Margin = new Padding(4, 0, 4, 0);
+            lbl_nCliente.Name = "lbl_nCliente";
+            lbl_nCliente.Size = new Size(19, 15);
+            lbl_nCliente.TabIndex = 3;
+            lbl_nCliente.Text = "33";
             // 
             // NovoClienteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(457, 325);
-            Controls.Add(label6);
+            Controls.Add(lbl_nCliente);
             Controls.Add(label5);
-            Controls.Add(button1);
+            Controls.Add(btn_Gravar);
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(4, 3, 4, 3);
             Name = "NovoClienteForm";
@@ -207,8 +208,8 @@
         private System.Windows.Forms.TextBox txtBox_nvClienteMorada;
         private System.Windows.Forms.TextBox txtBox_nvClienteEmail;
         private System.Windows.Forms.TextBox txtBox_nvClienteTelemovel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Gravar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_nCliente;
     }
 }

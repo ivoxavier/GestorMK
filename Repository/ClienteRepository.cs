@@ -10,8 +10,13 @@ namespace GestorMK.Repository
 {
     public class ClienteRepository
     {
+
+
+       public static string caminhoCompletoBD = Path.Combine(Constantes.BdPasta, Constantes.BdNome);
+
+       public static string ConnectionString = $"Data Source={caminhoCompletoBD}";
+
         
-        private const string ConnectionString = "Data Source=databases/GestorMK.sqlite";
 
         public ClienteRepository()
         {
@@ -24,6 +29,22 @@ namespace GestorMK.Repository
         }
 
         
+
+        public Int64 ObterProximoNumeroCliente() 
+        {
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = @"SELECT coalesce(MAX(id),0) + 1 as id FROM Clientes";
+
+                var proximoId = Convert.ToInt64(command.ExecuteScalar());
+
+                return proximoId;
+            }
+        }
+
         public void Adicionar(Cliente cliente)
         {
             using (var connection = new SqliteConnection(ConnectionString))
@@ -47,5 +68,7 @@ namespace GestorMK.Repository
                 command.ExecuteNonQuery();
             }
         }
+
+
     }
 }
