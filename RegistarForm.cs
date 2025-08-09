@@ -22,8 +22,9 @@ namespace GestorMK
         {
             InitializeComponent();
 
+            var bdd = new CriaBaseDados();
+            bdd.InicializaBD();
 
-           
             itensDaFicha = new BindingList<MovimentosItens>();
             dgv_rgMovimentos.DataSource = itensDaFicha;
 
@@ -42,8 +43,7 @@ namespace GestorMK
 
             }
 
-            var bdd = new CriaBaseDados();
-            bdd.InicializaBD();
+            
 
         }
 
@@ -177,7 +177,7 @@ namespace GestorMK
             {
                 IdMovimento = fichaID,
                 Tipo = tipoSelected,
-                Preco = 0,
+                Preco = productRepository.ObterPrecoProduto(produtcID),
                 Quantidade = 1,
                 NomeProduto = productRepository.ObterNomeProduto(produtcID)
             };

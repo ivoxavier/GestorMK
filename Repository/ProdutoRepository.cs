@@ -148,7 +148,33 @@ namespace GestorMK.Repository
 
 
 
+        public decimal ObterPrecoProduto(Int32 produtoID)
+        {
 
+            decimal precoProduto = 0;
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+
+
+                command.CommandText = @"SELECT Preco FROM Produtos WHERE id = @id";
+
+
+                command.Parameters.AddWithValue("@id", produtoID);
+
+                var resultado = command.ExecuteScalar();
+
+                if (resultado != null)
+                {
+                    precoProduto = Convert.ToDecimal(resultado);
+                }
+            }
+
+            return precoProduto;
+        }
 
 
 
