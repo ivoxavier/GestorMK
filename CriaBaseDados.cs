@@ -82,7 +82,6 @@ namespace GestorMK
                     cmd.CommandText = @"
                            CREATE TABLE IF NOT EXISTS Movimentos  (
 	                        ""id""	INTEGER NOT NULL,
-	                        ""Tipo""	INTEGER NOT NULL,
 	                        ""ClienteID""	INTEGER NOT NULL,
 	                        ""DataCriacao""	TEXT NOT NULL DEFAULT CURRENT_DATE',
 	                        PRIMARY KEY(""id"" AUTOINCREMENT));";
@@ -99,6 +98,7 @@ namespace GestorMK
 	                       ""idProduto""	INTEGER NOT NULL,
 	                       ""Preco""	NUMERIC NOT NULL,
 	                       ""Quantidade""	INTEGER NOT NULL,
+                           ""Tipo""	INTEGER NOT NULL
 	                       PRIMARY KEY(""id"" AUTOINCREMENT));";
 
 

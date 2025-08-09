@@ -54,6 +54,76 @@ namespace GestorMK.Repository
 
 
 
+
+        public int ObterStockProduto(int produtoId)
+        {
+            
+            string sql = "SELECT Quantidade FROM Produtos WHERE ID = $id";
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("$id", produtoId);
+
+                
+                var result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result);
+                }
+            }
+
+            return 0;
+        }
+
+
+
+        public void AtualizarStockProduto(int produtoId, int novoStock)
+        {
+            string sql = "UPDATE Produtos SET Quantidade = $stock WHERE ID = $id";
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("$stock", novoStock);
+                command.Parameters.AddWithValue("$id", produtoId);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
+
+        public void AjustarStockProduto(int produtoId, int novoStock, decimal preco)
+        {
+            string sql = @"
+                        UPDATE Produtos 
+                        SET Quantidade = $stock, Preco = $preco 
+                        WHERE ID = $id";
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("$stock", novoStock);
+                command.Parameters.AddWithValue("$id", produtoId);
+                command.Parameters.AddWithValue("$preco", preco);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
+
+
+
+
         public void AdicionarNovaCategoriaProduto(CategoriaProduto categoria)
         {
             using (var connection = new SqliteConnection(ConnectionString))
@@ -145,6 +215,50 @@ namespace GestorMK.Repository
             }
             return produtos;
         }
+
+
+
+
+
+        public List<Produto> ListaProdutosInventario()
+        {
+
+            var produtos = new List<Produto>();
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = @"
+                    SELECT id, Nome, Categoria, Preco, Quantidade FROM Produtos;";
+
+
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var produto = new Produto
+                        {
+                            Id = reader.GetInt32(0),
+                            Nome = reader.GetString(1),
+                            Categoria = reader.GetString(2),
+                            Preco = reader.GetDecimal(3),
+                            Quantidade = reader.GetInt32(4)
+
+                        };
+                        produtos.Add(produto);
+                    }
+
+                }
+
+
+            }
+            return produtos;
+        }
+
+
 
 
 

@@ -11,12 +11,11 @@ namespace GestorMK.Repository
     public class MovimentosRepository
     {
         public static string caminhoCompletoBD = Path.Combine(Constantes.BdPasta, Constantes.BdNome);
-
         public static string ConnectionString = $"Data Source={caminhoCompletoBD}";
 
         public MovimentosRepository()
         {
-
+            
             string? directoryPath = Path.GetDirectoryName(ConnectionString.Split('=')[1]);
             if (!string.IsNullOrEmpty(directoryPath))
             {
@@ -24,8 +23,31 @@ namespace GestorMK.Repository
             }
         }
 
+        
+        public long AdicionarMovimento(Movimentos movimentoCab)
+        {
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
 
-        public void AdicionarMovimento(Movimentos movimento, MovimentosItens movimentosItens, Int64 movimentoID) 
+                var command = connection.CreateCommand();
+              
+                command.CommandText = @"
+                    INSERT INTO Movimentos (ClienteID)
+                    VALUES ($clientid);
+                    SELECT last_insert_rowid();";
+
+                command.Parameters.AddWithValue("$clientid", movimentoCab.ClientID);
+
+                
+                long novoId = (long)command.ExecuteScalar();
+
+                return novoId;
+            }
+        }
+
+        
+        public void AdicionarMovimentoItem(MovimentosItens item)
         {
             using (var connection = new SqliteConnection(ConnectionString))
             {
@@ -33,28 +55,22 @@ namespace GestorMK.Repository
 
                 var command = connection.CreateCommand();
                 command.CommandText = @"
-                    INSERT INTO Movimentos (Tipo,ClienteID)
-                    VALUES ($tipo,$clientid);";
+                    INSERT INTO MovimentosItens (idMovimento, idProduto, Preco, Quantidade, Tipo)
+                    VALUES ($idmovimento, $idproduto, $preco, $quantidade,$tipo);";
 
-                command.Parameters.AddWithValue("$tipo", movimento.Tipo);
-                command.Parameters.AddWithValue("$clientid", movimento.ClientID);
+               
+                command.Parameters.AddWithValue("$idmovimento", item.IdMovimento);
+                command.Parameters.AddWithValue("$idproduto", item.IdProduto);
+                command.Parameters.AddWithValue("$preco", item.Preco);
+                command.Parameters.AddWithValue("$quantidade", item.Quantidade);
+                command.Parameters.AddWithValue("$tipo", item.TipoID);
+
                 command.ExecuteNonQuery();
-
-                command.CommandText = @"
-                    INSERT INTO MovimentosItens (idMovimento,idProduto,Preco,Quantidade)
-                    VALUES ($idmovimento,$idproduto,$preco,$quantidade);";
-
-                command.Parameters.AddWithValue("$idmovimento", movimentoID);
-                command.Parameters.AddWithValue("$idproduto", movimento.ProdutoID);
-                command.Parameters.AddWithValue("$preco", movimentosItens.Preco);
-                command.Parameters.AddWithValue("$quantidade", movimentosItens.Quantidade);
-                command.ExecuteNonQuery();
-
             }
-
         }
 
-        public Int64 ObterProximoNumeroFicha()
+        
+        public long ObterProximoNumeroFicha()
         {
             using (var connection = new SqliteConnection(ConnectionString))
             {
@@ -70,4 +86,4 @@ namespace GestorMK.Repository
         }
 
     }
- }
+}

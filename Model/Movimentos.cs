@@ -23,8 +23,8 @@ namespace GestorMK.Model
 
     public class MovimentosItens
     {
-        [Required]
-        public required int Tipo { get; set; }
+        
+        public int TipoID { get; set; }
 
         [Required]
         public required int IdMovimento { get; set; }
@@ -42,5 +42,8 @@ namespace GestorMK.Model
 
         public string NomeProduto { get; set; } 
 
+        public string TipoDescricao {  get; set; }  
+
     }
+
 }

@@ -63,9 +63,9 @@
             lbl_nvPreco.AutoSize = true;
             lbl_nvPreco.Location = new Point(10, 86);
             lbl_nvPreco.Name = "lbl_nvPreco";
-            lbl_nvPreco.Size = new Size(51, 15);
+            lbl_nvPreco.Size = new Size(34, 15);
             lbl_nvPreco.TabIndex = 2;
-            lbl_nvPreco.Text = "Preço(€)";
+            lbl_nvPreco.Text = "P.V.P";
             // 
             // lbl_nvProdutoQuantidade
             // 

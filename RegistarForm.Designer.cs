@@ -40,7 +40,15 @@
             manutençaoToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
             dgv_rgMovimentos = new DataGridView();
-            button1 = new Button();
+            TipoID = new DataGridViewTextBoxColumn();
+            idMovimento = new DataGridViewTextBoxColumn();
+            TipoDescricao = new DataGridViewTextBoxColumn();
+            NomeProduto = new DataGridViewTextBoxColumn();
+            Produto = new DataGridViewTextBoxColumn();
+            idProduto = new DataGridViewTextBoxColumn();
+            Preco = new DataGridViewTextBoxColumn();
+            Quantidade = new DataGridViewTextBoxColumn();
+            btn_regFecharFicha = new Button();
             txtBox_nCliente = new TextBox();
             label1 = new Label();
             label2 = new Label();
@@ -49,6 +57,7 @@
             txtBox_cliente = new TextBox();
             txtBox_nProduto = new TextBox();
             groupBox1 = new GroupBox();
+            rdb_regOferta = new RadioButton();
             rdb_regEmprestimo = new RadioButton();
             rdb_regVenda = new RadioButton();
             btn_regAdicionar = new Button();
@@ -56,13 +65,8 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            id = new DataGridViewTextBoxColumn();
-            idMovimento = new DataGridViewTextBoxColumn();
-            Produto = new DataGridViewTextBoxColumn();
-            idProduto = new DataGridViewTextBoxColumn();
-            NomeProduto = new DataGridViewTextBoxColumn();
-            Preco = new DataGridViewTextBoxColumn();
-            Quantidade = new DataGridViewTextBoxColumn();
+            lbl_nLabel = new Label();
+            label6 = new Label();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_rgMovimentos).BeginInit();
@@ -114,6 +118,7 @@
             ajustarInventárioToolStripMenuItem.Name = "ajustarInventárioToolStripMenuItem";
             ajustarInventárioToolStripMenuItem.Size = new Size(167, 22);
             ajustarInventárioToolStripMenuItem.Text = "Ajustar Inventário";
+            ajustarInventárioToolStripMenuItem.Click += ajustarInventárioToolStripMenuItem_Click;
             // 
             // listagensToolStripMenuItem
             // 
@@ -142,6 +147,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(dgv_rgMovimentos);
             panel1.Location = new Point(14, 163);
             panel1.Margin = new Padding(4, 3, 4, 3);
@@ -152,23 +158,83 @@
             // dgv_rgMovimentos
             // 
             dgv_rgMovimentos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_rgMovimentos.Columns.AddRange(new DataGridViewColumn[] { id, idMovimento, Produto, idProduto, NomeProduto, Preco, Quantidade });
-            dgv_rgMovimentos.Location = new Point(7, 3);
+            dgv_rgMovimentos.Columns.AddRange(new DataGridViewColumn[] { TipoID, idMovimento, TipoDescricao, NomeProduto, Produto, idProduto, Preco, Quantidade });
+            dgv_rgMovimentos.Dock = DockStyle.Fill;
+            dgv_rgMovimentos.Location = new Point(0, 0);
             dgv_rgMovimentos.Margin = new Padding(4, 3, 4, 3);
             dgv_rgMovimentos.Name = "dgv_rgMovimentos";
             dgv_rgMovimentos.RowHeadersWidth = 51;
-            dgv_rgMovimentos.Size = new Size(895, 263);
+            dgv_rgMovimentos.Size = new Size(905, 270);
             dgv_rgMovimentos.TabIndex = 0;
             // 
-            // button1
+            // TipoID
             // 
-            button1.Location = new Point(832, 456);
-            button1.Margin = new Padding(4, 3, 4, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(88, 50);
-            button1.TabIndex = 2;
-            button1.Text = "Fechar Ficha";
-            button1.UseVisualStyleBackColor = true;
+            TipoID.DataPropertyName = "TipoID";
+            TipoID.HeaderText = "TipoID";
+            TipoID.Name = "TipoID";
+            TipoID.Visible = false;
+            // 
+            // idMovimento
+            // 
+            idMovimento.DataPropertyName = "idMovimento";
+            idMovimento.HeaderText = "Ficha";
+            idMovimento.Name = "idMovimento";
+            idMovimento.ReadOnly = true;
+            // 
+            // TipoDescricao
+            // 
+            TipoDescricao.DataPropertyName = "TipoDescricao";
+            TipoDescricao.HeaderText = "Tipo Descricao";
+            TipoDescricao.Name = "TipoDescricao";
+            // 
+            // NomeProduto
+            // 
+            NomeProduto.DataPropertyName = "NomeProduto";
+            NomeProduto.HeaderText = "NomeProduto";
+            NomeProduto.Name = "NomeProduto";
+            // 
+            // Produto
+            // 
+            Produto.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Produto.DataPropertyName = "Produto";
+            Produto.HeaderText = "Produto";
+            Produto.Name = "Produto";
+            Produto.ReadOnly = true;
+            Produto.Visible = false;
+            // 
+            // idProduto
+            // 
+            idProduto.DataPropertyName = "idProduto";
+            idProduto.HeaderText = "idProduto";
+            idProduto.Name = "idProduto";
+            idProduto.Visible = false;
+            // 
+            // Preco
+            // 
+            Preco.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Preco.DataPropertyName = "Preco";
+            Preco.HeaderText = "P.V.P";
+            Preco.Name = "Preco";
+            Preco.Width = 59;
+            // 
+            // Quantidade
+            // 
+            Quantidade.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Quantidade.DataPropertyName = "Quantidade";
+            Quantidade.HeaderText = "Quantidade";
+            Quantidade.Name = "Quantidade";
+            // 
+            // btn_regFecharFicha
+            // 
+            btn_regFecharFicha.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_regFecharFicha.Location = new Point(832, 456);
+            btn_regFecharFicha.Margin = new Padding(4, 3, 4, 3);
+            btn_regFecharFicha.Name = "btn_regFecharFicha";
+            btn_regFecharFicha.Size = new Size(88, 50);
+            btn_regFecharFicha.TabIndex = 2;
+            btn_regFecharFicha.Text = "Fechar Ficha";
+            btn_regFecharFicha.UseVisualStyleBackColor = true;
+            btn_regFecharFicha.Click += btn_regFecharFicha_Click;
             // 
             // txtBox_nCliente
             // 
@@ -260,6 +326,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(rdb_regOferta);
             groupBox1.Controls.Add(rdb_regEmprestimo);
             groupBox1.Controls.Add(rdb_regVenda);
             groupBox1.Location = new Point(14, 107);
@@ -270,6 +337,17 @@
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "Tipo";
+            // 
+            // rdb_regOferta
+            // 
+            rdb_regOferta.AutoSize = true;
+            rdb_regOferta.Location = new Point(190, 22);
+            rdb_regOferta.Name = "rdb_regOferta";
+            rdb_regOferta.Size = new Size(58, 19);
+            rdb_regOferta.TabIndex = 10;
+            rdb_regOferta.TabStop = true;
+            rdb_regOferta.Text = "Oferta";
+            rdb_regOferta.UseVisualStyleBackColor = true;
             // 
             // rdb_regEmprestimo
             // 
@@ -352,62 +430,31 @@
             label5.TabIndex = 13;
             label5.Text = "por: Ivo Xavier";
             // 
-            // id
+            // lbl_nLabel
             // 
-            id.DataPropertyName = "id";
-            id.HeaderText = "id";
-            id.Name = "id";
-            id.Visible = false;
+            lbl_nLabel.AutoSize = true;
+            lbl_nLabel.Location = new Point(21, 447);
+            lbl_nLabel.Name = "lbl_nLabel";
+            lbl_nLabel.Size = new Size(60, 15);
+            lbl_nLabel.TabIndex = 14;
+            lbl_nLabel.Text = "Total PVP:";
             // 
-            // idMovimento
+            // label6
             // 
-            idMovimento.DataPropertyName = "idMovimento";
-            idMovimento.HeaderText = "idMovimento";
-            idMovimento.Name = "idMovimento";
-            idMovimento.ReadOnly = true;
-            // 
-            // Produto
-            // 
-            Produto.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Produto.DataPropertyName = "Produto";
-            Produto.HeaderText = "Produto";
-            Produto.Name = "Produto";
-            Produto.ReadOnly = true;
-            Produto.Visible = false;
-            // 
-            // idProduto
-            // 
-            idProduto.DataPropertyName = "idProduto";
-            idProduto.HeaderText = "idProduto";
-            idProduto.Name = "idProduto";
-            idProduto.Visible = false;
-            // 
-            // NomeProduto
-            // 
-            NomeProduto.DataPropertyName = "NomeProduto";
-            NomeProduto.HeaderText = "NomeProduto";
-            NomeProduto.Name = "NomeProduto";
-            // 
-            // Preco
-            // 
-            Preco.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            Preco.DataPropertyName = "Preco";
-            Preco.HeaderText = "Preco";
-            Preco.Name = "Preco";
-            Preco.Width = 62;
-            // 
-            // Quantidade
-            // 
-            Quantidade.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Quantidade.DataPropertyName = "Quantidade";
-            Quantidade.HeaderText = "Quantidade";
-            Quantidade.Name = "Quantidade";
+            label6.AutoSize = true;
+            label6.Location = new Point(21, 474);
+            label6.Name = "label6";
+            label6.Size = new Size(87, 15);
+            label6.TabIndex = 15;
+            label6.Text = "Total Produtos:";
             // 
             // RegistarForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 519);
+            Controls.Add(label6);
+            Controls.Add(lbl_nLabel);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -415,7 +462,7 @@
             Controls.Add(btn_regAdicionar);
             Controls.Add(groupBox1);
             Controls.Add(tableLayoutPanel1);
-            Controls.Add(button1);
+            Controls.Add(btn_regFecharFicha);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             ImeMode = ImeMode.Disable;
@@ -444,7 +491,7 @@
         private System.Windows.Forms.ToolStripMenuItem manutençaoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem novoClienteToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_regFecharFicha;
         private System.Windows.Forms.TextBox txtBox_nCliente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -466,13 +513,17 @@
         private ToolStripMenuItem produtosToolStripMenuItem1;
         private ToolStripMenuItem novoProdutoToolStripMenuItem;
         private ToolStripMenuItem ajustarInventárioToolStripMenuItem;
-        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn TipoID;
         private DataGridViewTextBoxColumn idMovimento;
+        private DataGridViewTextBoxColumn TipoDescricao;
+        private DataGridViewTextBoxColumn NomeProduto;
         private DataGridViewTextBoxColumn Produto;
         private DataGridViewTextBoxColumn idProduto;
-        private DataGridViewTextBoxColumn NomeProduto;
         private DataGridViewTextBoxColumn Preco;
         private DataGridViewTextBoxColumn Quantidade;
+        private RadioButton rdb_regOferta;
+        private Label lbl_nLabel;
+        private Label label6;
     }
 }
 

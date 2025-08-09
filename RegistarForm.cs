@@ -1,16 +1,18 @@
-﻿using System;
+﻿using GestorMK.Model;
+using GestorMK.Properties;
+using GestorMK.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestorMK.Model;
-using GestorMK.Properties;
-using GestorMK.Repository;
-
+using FastReport.Data;
+using FastReport;
 namespace GestorMK
 {
     public partial class RegistarForm : Form
@@ -28,11 +30,12 @@ namespace GestorMK
             itensDaFicha = new BindingList<MovimentosItens>();
             dgv_rgMovimentos.DataSource = itensDaFicha;
 
-          
 
 
-            var repository = new MovimentosRepository();
-            txtBox_nFicha.Text = repository.ObterProximoNumeroFicha().ToString();
+
+            PrepararNovaFicha();
+
+
 
             if (Settings.Default.isFirstUsage)
             {
@@ -43,7 +46,7 @@ namespace GestorMK
 
             }
 
-            
+
 
         }
 
@@ -153,6 +156,18 @@ namespace GestorMK
         private void btn_regAdicionar_Click(object sender, EventArgs e)
         {
 
+
+            if (string.IsNullOrWhiteSpace(txtBox_nCliente.Text) || string.IsNullOrWhiteSpace(txtBox_nProduto.Text))
+            {
+                MessageBox.Show("Adicionar cliente e produto");
+                return;
+            }
+
+
+            //bloqueia o cliente ate a ficha ser fechada
+            txtBox_nCliente.Enabled = false;
+
+
             var repository = new MovimentosRepository();
             var productRepository = new ProdutoRepository();
 
@@ -161,36 +176,23 @@ namespace GestorMK
             int produtcID = Convert.ToInt32(txtBox_nProduto.Text);
             int fichaID = Convert.ToInt32(txtBox_nFicha.Text);
 
-            // 0 Venda  1 Emprestimo
-            int tipoSelected = rdb_regVenda.Checked ? 0 : 1;
+            // 0 Venda  1 Emprestimo 2 Oferta
+            int tipoSelected = rdb_regVenda.Checked ? 0 : rdb_regEmprestimo.Checked ? 1 : 2;
 
 
-
-            var movimentoCab = new Movimentos
-            { 
-                Tipo = tipoSelected,
-                ClientID = clientID,
-                ProdutoID = produtcID
-            };
 
             var novoItem = new MovimentosItens
             {
+                IdProduto = produtcID,
                 IdMovimento = fichaID,
-                Tipo = tipoSelected,
+                TipoID = tipoSelected,
                 Preco = productRepository.ObterPrecoProduto(produtcID),
                 Quantidade = 1,
-                NomeProduto = productRepository.ObterNomeProduto(produtcID)
+                NomeProduto = productRepository.ObterNomeProduto(produtcID),
+                TipoDescricao = tipoSelected == 0 ? "Venda" : tipoSelected == 1 ? "Empréstimo" : "Oferta"
             };
 
             itensDaFicha.Add(novoItem);
-
-
-            
-
-
-            repository.AdicionarMovimento(movimentoCab, novoItem, fichaID);
-
-            LimpaCampos();
 
         }
 
@@ -207,5 +209,128 @@ namespace GestorMK
 
         }
 
+        private void btn_regFecharFicha_Click(object sender, EventArgs e)
+        {
+            int clientID = Convert.ToInt32(txtBox_nCliente.Text);
+            int tipoSelected = rdb_regVenda.Checked ? 0 : 1;
+            int produtcID = Convert.ToInt32(txtBox_nProduto.Text);
+
+
+            if (itensDaFicha.Count == 0)
+            {
+                MessageBox.Show("É necessário adicionar pelo menos um item antes de fechar a ficha.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            var produtoRepository = new ProdutoRepository();
+
+            foreach (MovimentosItens item in itensDaFicha)
+            {
+                
+                int stockDisponivel = produtoRepository.ObterStockProduto(item.IdProduto);
+
+
+                if (item.Quantidade > stockDisponivel)
+                {
+
+                    MessageBox.Show(
+                        $"Stock insuficiente para o produto '{item.NomeProduto}'.\n\n" +
+                        $"Quantidade Pedida: {item.Quantidade}\n" +
+                        $"Stock Disponível: {stockDisponivel}",
+                        "Stock Insuficiente",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+            }
+
+
+            var movimentosRepository = new MovimentosRepository();
+
+
+
+            var movimentoCab = new Movimentos
+            {
+                Tipo = tipoSelected,
+                ClientID = clientID,
+                ProdutoID = produtcID
+
+            };
+
+            long novoFichaID = movimentosRepository.AdicionarMovimento(movimentoCab);
+
+            if (novoFichaID <= 0)
+            {
+                MessageBox.Show("Ocorreu um erro ao criar o registo principal da ficha.", "Erro de Base de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            foreach (MovimentosItens item in itensDaFicha)
+            {
+                item.IdMovimento = Convert.ToInt32(novoFichaID);
+                movimentosRepository.AdicionarMovimentoItem(item);
+
+                int stockAtual = produtoRepository.ObterStockProduto(item.IdProduto);
+                int novoStock = stockAtual - item.Quantidade;
+                produtoRepository.AtualizarStockProduto(item.IdProduto, novoStock);
+            }
+
+            
+            DialogResult querGuardarPdf = MessageBox.Show("Ficha gravada com sucesso.\nDeseja guardar o relatório em PDF?",
+                                                        "Gravar Relatório", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (querGuardarPdf == DialogResult.Yes)
+            {
+                
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "Ficheiro PDF (*.pdf)|*.pdf";
+                    saveDialog.Title = "Gravar Ficha como PDF";
+                    saveDialog.FileName = $"Ficha_{novoFichaID}.pdf";
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        
+                        var servicoDeRelatorios = new GestorMK.Services.RelatorioService(); 
+                        string minhaConnectionString = MovimentosRepository.ConnectionString;
+                        string nomeDoFicheiroRelatorio = "Ficha.frx"; 
+                        string caminhoParaGravar = saveDialog.FileName;
+
+                        bool sucesso = servicoDeRelatorios.ExportarFichaParaPdf(novoFichaID, minhaConnectionString, nomeDoFicheiroRelatorio, caminhoParaGravar);
+
+                        if (sucesso)
+                        {
+                            MessageBox.Show("Relatório guardado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+
+
+            PrepararNovaFicha();
+        }
+
+
+        private void PrepararNovaFicha()
+        {
+            var repository = new MovimentosRepository();
+            txtBox_nFicha.Text = repository.ObterProximoNumeroFicha().ToString();
+
+
+            LimpaCampos();
+            itensDaFicha.Clear();
+            txtBox_nCliente.Enabled = true;
+        }
+
+        private void ajustarInventárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AjustarInventarioForm ajustarInventario = new AjustarInventarioForm();
+
+            ajustarInventario.ShowDialog();
+        }
     }
+
+
 }

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/09/2025 17:39:22" ReportInfo.Modified="08/09/2025 20:34:27" ReportInfo.CreatorVersion="2025.2.0.0">
+  <Dictionary>
+    <SQLiteDataConnection Name="Connection" ConnectionString="rijcmlqIltkgxALMArhJ2W63qXqyyGEc0+6eLX+WQhymmL+S0bPru2JkDrUFQSajJfWBgDK9GetNOHiTJlV9O8QtguFEpw0QFoxBIqX2mwXG6tHqF8Dej9T5wDw9W3mNXQPhDvvzzWu3k07hD71xehip2pXiA==">
+      <TableDataSource Name="CategoriasProdutos" DataType="System.Int32" Enabled="true" TableName="CategoriasProdutos">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Categoria" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Clientes" DataType="System.Int32" Enabled="true" TableName="Clientes">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Nome" DataType="System.String"/>
+        <Column Name="Morada" DataType="System.String"/>
+        <Column Name="Email" DataType="System.String"/>
+        <Column Name="Telemovel" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Movimentos" DataType="System.Int32" Enabled="true" TableName="Movimentos">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Tipo" DataType="System.Int64"/>
+        <Column Name="ClienteID" DataType="System.Int64"/>
+        <Column Name="DataCriacao" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="MovimentosItens" DataType="System.Int32" Enabled="true" TableName="MovimentosItens" SelectCommand="SELECT c.Nome,&#13;&#10;c.Morada,&#13;&#10;m.ClienteID,&#13;&#10;m.DataCriacao,&#13;&#10;mi.idMovimento,&#13;&#10;mi.idProduto,&#13;&#10;p.Nome as ProdutoNome,&#13;&#10;mi.Preco,&#13;&#10;mi.Quantidade,&#13;&#10;CASE mi.Tipo&#13;&#10;    WHEN 0 THEN 'Venda'&#13;&#10;    WHEN 1 THEN 'Empréstimo'&#13;&#10;    WHEN 2 THEN 'Oferta'&#13;&#10;    ELSE 'Desconhecido'&#13;&#10;END AS 'TipoDesc'&#13;&#10;FROM MovimentosItens mi&#13;&#10;INNER JOIN Movimentos m&#13;&#10;ON m.id = mi.idMovimento&#13;&#10;INNER JOIN Clientes c&#13;&#10;ON c.id = m.ClienteID&#13;&#10;INNER JOIN Produtos p&#13;&#10;ON p.id = mi.idProduto&#13;&#10;where mi.idMovimento = ?">
+        <Column Name="idMovimento" DataType="System.Int64"/>
+        <Column Name="idProduto" DataType="System.Int64"/>
+        <Column Name="Preco" DataType="System.Decimal"/>
+        <Column Name="Quantidade" DataType="System.Int64"/>
+        <Column Name="Nome" DataType="System.String"/>
+        <Column Name="Morada" DataType="System.String"/>
+        <Column Name="ClienteID" DataType="System.Int64"/>
+        <Column Name="DataCriacao" DataType="System.String"/>
+        <Column Name="ProdutoNome" DataType="System.String"/>
+        <Column Name="TipoDesc" DataType="System.Object"/>
+        <CommandParameter Name="movID" DataType="12" Expression="[MovimentoID]"/>
+      </TableDataSource>
+      <TableDataSource Name="Produtos" DataType="System.Int32" Enabled="true" TableName="Produtos">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Nome" DataType="System.String"/>
+        <Column Name="Categoria" DataType="System.String"/>
+        <Column Name="Preco" DataType="System.Decimal"/>
+        <Column Name="Quantidade" DataType="System.Int64"/>
+      </TableDataSource>
+      <TableDataSource Name="sqlite_sequence" DataType="System.Int32" Enabled="true" TableName="sqlite_sequence">
+        <Column Name="name" DataType="System.Object"/>
+        <Column Name="seq" DataType="System.Object"/>
+      </TableDataSource>
+    </SQLiteDataConnection>
+    <Parameter Name="MovimentoID" DataType="System.Int32" Expression="33"/>
+    <Total Name="TotalQuantidade" Expression="[MovimentosItens.Quantidade]" Evaluator="Data1"/>
+    <Total Name="TotalPVP" Expression="[MovimentosItens.Preco]" Evaluator="Data1"/>
+    <Total Name="TotalpRODUTOS" TotalType="Count" Evaluator="Data1"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="255.15">
+      <TextObject Name="Text1" Left="9.45" Top="9.45" Width="179.55" Height="28.35" Text="GESTORMK" Font="Arial, 20pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="37.8" Width="179.55" Height="18.9" Text="Desenvolvido por Ivo Xavier" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="9.45" Top="75.6" Width="75.6" Height="37.8" Text="Ficha Nº:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text4" Left="652.05" Top="18.9" Width="56.7" Height="18.9" Text="[Page]" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Left="604.8" Top="18.9" Width="47.25" Height="18.9" Text="Pág." Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="9.45" Top="113.4" Width="85.05" Height="37.8" Text="Cliente Nº:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="9.45" Top="151.2" Width="66.15" Height="28.35" Text="Cliente:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text8" Top="226.8" Width="132.3" Height="28.35" Border.Lines="All" Text="Referência Interna Produto" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text9" Left="132.3" Top="226.8" Width="207.9" Height="28.35" Border.Lines="All" Text="Produto" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text10" Left="340.2" Top="226.8" Width="141.75" Height="28.35" Border.Lines="All" Text="Tipo Movimento" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Left="481.95" Top="226.8" Width="94.5" Height="28.35" Border.Lines="All" Text="Quantidade" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="576.45" Top="226.8" Width="141.75" Height="28.35" Border.Lines="All" Text="P.V.P" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text13" Left="85.05" Top="75.6" Width="94.5" Height="37.8" Text="[MovimentosItens.idMovimento]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text14" Left="75.6" Top="151.2" Width="94.5" Height="28.35" Text="[MovimentosItens.Nome]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text15" Left="94.5" Top="113.4" Width="94.5" Height="37.8" Text="[MovimentosItens.ClienteID]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text17" Left="189" Top="75.6" Width="94.5" Height="18.9" Text="Data:" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text18" Left="283.5" Top="75.6" Width="94.5" Height="18.9" Text="[MovimentosItens.DataCriacao]" HorzAlign="Right" Font="Arial, 10pt"/>
+      <TextObject Name="Text30" Left="9.45" Top="189" Width="66.15" Height="28.35" Text="Morada:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text31" Left="75.6" Top="189" Width="94.5" Height="28.35" Text="[MovimentosItens.Morada]" HorzAlign="Center" Font="Arial, 8pt"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="257.15" Width="718.2" Height="28.35" DataSource="MovimentosItens">
+      <TextObject Name="Text19" Width="132.3" Height="18.9" Text="[MovimentosItens.idProduto]" HorzAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text20" Left="132.3" Width="207.9" Height="18.9" Text="[MovimentosItens.ProdutoNome]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="340.2" Width="141.75" Height="18.9" Text="[MovimentosItens.TipoDesc]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="486.85" Top="-0.4" Width="85.05" Height="18.9" Text="[MovimentosItens.Quantidade]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text25" Left="576.45" Width="141.75" Height="18.9" Text="[MovimentosItens.Preco]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 8pt" Trimming="EllipsisCharacter"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="287.5" Width="718.2" Height="94.5">
+      <TextObject Name="Text16" Width="103.95" Height="18.9" Text="Totais:" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text28" Left="576.45" Width="94.5" Height="18.9" Text="[TotalPVP]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="103.95" Width="94.5" Height="18.9" Text="[TotalpRODUTOS]" HorzAlign="Center" Font="Arial, 8pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
