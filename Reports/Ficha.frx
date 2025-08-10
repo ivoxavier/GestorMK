@@ -1,7 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="08/09/2025 17:39:22" ReportInfo.Modified="08/09/2025 20:34:27" ReportInfo.CreatorVersion="2025.2.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/09/2025 17:39:22" ReportInfo.Modified="08/10/2025 10:38:56" ReportInfo.CreatorVersion="2025.2.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+</ScriptText>
   <Dictionary>
-    <SQLiteDataConnection Name="Connection" ConnectionString="rijcmlqIltkgxALMArhJ2W63qXqyyGEc0+6eLX+WQhymmL+S0bPru2JkDrUFQSajJfWBgDK9GetNOHiTJlV9O8QtguFEpw0QFoxBIqX2mwXG6tHqF8Dej9T5wDw9W3mNXQPhDvvzzWu3k07hD71xehip2pXiA==">
+    <SQLiteDataConnection Name="Connection" ConnectionString="rijcmlqIltkgxALMArhJ2W63qXqyyGEc0+6eLX+WQhymmL+S0bPru2JkDrUFQSajJfWBgDK9GetNOHiTJlV9O8QtguFEpw0QFoxBIqX2mwXG6tHqF8Dej9T5wDw9W3mNXQPhDvv0Ys9L2woCIXPku6p1EQV7A==" ConnectionStringExpression="[Conn]">
       <TableDataSource Name="CategoriasProdutos" DataType="System.Int32" Enabled="true" TableName="CategoriasProdutos">
         <Column Name="id" DataType="System.Int64"/>
         <Column Name="Categoria" DataType="System.String"/>
@@ -19,7 +40,7 @@
         <Column Name="ClienteID" DataType="System.Int64"/>
         <Column Name="DataCriacao" DataType="System.String"/>
       </TableDataSource>
-      <TableDataSource Name="MovimentosItens" DataType="System.Int32" Enabled="true" TableName="MovimentosItens" SelectCommand="SELECT c.Nome,&#13;&#10;c.Morada,&#13;&#10;m.ClienteID,&#13;&#10;m.DataCriacao,&#13;&#10;mi.idMovimento,&#13;&#10;mi.idProduto,&#13;&#10;p.Nome as ProdutoNome,&#13;&#10;mi.Preco,&#13;&#10;mi.Quantidade,&#13;&#10;CASE mi.Tipo&#13;&#10;    WHEN 0 THEN 'Venda'&#13;&#10;    WHEN 1 THEN 'Empréstimo'&#13;&#10;    WHEN 2 THEN 'Oferta'&#13;&#10;    ELSE 'Desconhecido'&#13;&#10;END AS 'TipoDesc'&#13;&#10;FROM MovimentosItens mi&#13;&#10;INNER JOIN Movimentos m&#13;&#10;ON m.id = mi.idMovimento&#13;&#10;INNER JOIN Clientes c&#13;&#10;ON c.id = m.ClienteID&#13;&#10;INNER JOIN Produtos p&#13;&#10;ON p.id = mi.idProduto&#13;&#10;where mi.idMovimento = ?">
+      <TableDataSource Name="MovimentosItens" DataType="System.Int32" Enabled="true" TableName="MovimentosItens" SelectCommand="SELECT c.Nome,&#13;&#10;c.Morada,&#13;&#10;m.ClienteID,&#13;&#10;m.DataCriacao,&#13;&#10;mi.idMovimento,&#13;&#10;mi.idProduto,&#13;&#10;p.Nome as ProdutoNome,&#13;&#10;mi.Preco,&#13;&#10;mi.Quantidade,&#13;&#10;CASE mi.Tipo&#13;&#10;    WHEN 0 THEN 'Venda'&#13;&#10;    WHEN 1 THEN 'Empréstimo'&#13;&#10;    WHEN 2 THEN 'Oferta'&#13;&#10;    ELSE 'Desconhecido'&#13;&#10;END AS 'TipoDesc'&#13;&#10;FROM MovimentosItens mi&#13;&#10;INNER JOIN Movimentos m&#13;&#10;ON m.id = mi.idMovimento&#13;&#10;INNER JOIN Clientes c&#13;&#10;ON c.id = m.ClienteID&#13;&#10;INNER JOIN Produtos p&#13;&#10;ON p.id = mi.idProduto&#13;&#10;where mi.idMovimento = @idMovimento">
         <Column Name="idMovimento" DataType="System.Int64"/>
         <Column Name="idProduto" DataType="System.Int64"/>
         <Column Name="Preco" DataType="System.Decimal"/>
@@ -31,6 +52,7 @@
         <Column Name="ProdutoNome" DataType="System.String"/>
         <Column Name="TipoDesc" DataType="System.Object"/>
         <CommandParameter Name="movID" DataType="12" Expression="[MovimentoID]"/>
+        <CommandParameter Name="idMovimento"/>
       </TableDataSource>
       <TableDataSource Name="Produtos" DataType="System.Int32" Enabled="true" TableName="Produtos">
         <Column Name="id" DataType="System.Int64"/>
@@ -45,6 +67,7 @@
       </TableDataSource>
     </SQLiteDataConnection>
     <Parameter Name="MovimentoID" DataType="System.Int32" Expression="33"/>
+    <Parameter Name="Conn" DataType="System.String" AsString=""/>
     <Total Name="TotalQuantidade" Expression="[MovimentosItens.Quantidade]" Evaluator="Data1"/>
     <Total Name="TotalPVP" Expression="[MovimentosItens.Preco]" Evaluator="Data1"/>
     <Total Name="TotalpRODUTOS" TotalType="Count" Evaluator="Data1"/>
