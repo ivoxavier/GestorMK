@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FastReport.Data;
+using FastReport.Utils;
 
 namespace GestorMK
 {
@@ -14,6 +16,9 @@ namespace GestorMK
         [STAThread]
         static void Main()
         {
+
+
+            RegisteredObjects.AddConnection(typeof(SQLiteDataConnection));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new RegistarForm());

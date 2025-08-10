@@ -28,6 +28,7 @@ namespace GestorMK
             bdd.InicializaBD();
 
             itensDaFicha = new BindingList<MovimentosItens>();
+            itensDaFicha.ListChanged += ItensDaFicha_ListChanged;
             dgv_rgMovimentos.DataSource = itensDaFicha;
 
 
@@ -194,6 +195,16 @@ namespace GestorMK
 
             itensDaFicha.Add(novoItem);
 
+
+            foreach (DataGridViewRow row in dgv_rgMovimentos.Rows)
+            {
+
+
+            }
+
+            lbl_valuePVP.Text = novoItem.ToString();
+            lbl_valueTotalProdutos.Text = novoItem.ToString();
+
         }
 
 
@@ -227,7 +238,7 @@ namespace GestorMK
 
             foreach (MovimentosItens item in itensDaFicha)
             {
-                
+
                 int stockDisponivel = produtoRepository.ObterStockProduto(item.IdProduto);
 
 
@@ -277,13 +288,13 @@ namespace GestorMK
                 produtoRepository.AtualizarStockProduto(item.IdProduto, novoStock);
             }
 
-            
+
             DialogResult querGuardarPdf = MessageBox.Show("Ficha gravada com sucesso.\nDeseja guardar o relatório em PDF?",
                                                         "Gravar Relatório", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (querGuardarPdf == DialogResult.Yes)
             {
-                
+
                 using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
                     saveDialog.Filter = "Ficheiro PDF (*.pdf)|*.pdf";
@@ -292,10 +303,10 @@ namespace GestorMK
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
-                        
-                        var servicoDeRelatorios = new GestorMK.Services.RelatorioService(); 
+
+                        var servicoDeRelatorios = new GestorMK.Services.RelatorioService();
                         string minhaConnectionString = MovimentosRepository.ConnectionString;
-                        string nomeDoFicheiroRelatorio = "Ficha.frx"; 
+                        string nomeDoFicheiroRelatorio = "Ficha.frx";
                         string caminhoParaGravar = saveDialog.FileName;
 
                         bool sucesso = servicoDeRelatorios.ExportarFichaParaPdf(novoFichaID, minhaConnectionString, nomeDoFicheiroRelatorio, caminhoParaGravar);
@@ -329,6 +340,31 @@ namespace GestorMK
             AjustarInventarioForm ajustarInventario = new AjustarInventarioForm();
 
             ajustarInventario.ShowDialog();
+        }
+
+        private void AtualizarTotais()
+        {
+
+            decimal totalPVP = itensDaFicha.Sum(item => item.Preco);
+
+
+            int totalProdutos = itensDaFicha.Count;
+
+
+
+            lbl_valuePVP.Text = totalPVP.ToString("C");
+            lbl_valueTotalProdutos.Text = totalProdutos.ToString();
+        }
+
+        private void ItensDaFicha_ListChanged(object sender, ListChangedEventArgs e)
+        {
+
+            AtualizarTotais();
+        }
+
+        private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

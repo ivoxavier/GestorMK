@@ -67,6 +67,9 @@
             label5 = new Label();
             lbl_nLabel = new Label();
             label6 = new Label();
+            lbl_valuePVP = new Label();
+            lbl_valueTotalProdutos = new Label();
+            empréstimosToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_rgMovimentos).BeginInit();
@@ -122,7 +125,7 @@
             // 
             // listagensToolStripMenuItem
             // 
-            listagensToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem1, produtosToolStripMenuItem1 });
+            listagensToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem1, produtosToolStripMenuItem1, empréstimosToolStripMenuItem });
             listagensToolStripMenuItem.Name = "listagensToolStripMenuItem";
             listagensToolStripMenuItem.Size = new Size(68, 20);
             listagensToolStripMenuItem.Text = "Listagens";
@@ -130,14 +133,15 @@
             // clientesToolStripMenuItem1
             // 
             clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            clientesToolStripMenuItem1.Size = new Size(122, 22);
-            clientesToolStripMenuItem1.Text = "Clientes";
+            clientesToolStripMenuItem1.Size = new Size(180, 22);
+            clientesToolStripMenuItem1.Text = "Vendas";
+            clientesToolStripMenuItem1.Click += clientesToolStripMenuItem1_Click;
             // 
             // produtosToolStripMenuItem1
             // 
             produtosToolStripMenuItem1.Name = "produtosToolStripMenuItem1";
-            produtosToolStripMenuItem1.Size = new Size(122, 22);
-            produtosToolStripMenuItem1.Text = "Produtos";
+            produtosToolStripMenuItem1.Size = new Size(180, 22);
+            produtosToolStripMenuItem1.Text = "Ofertas";
             // 
             // manutençaoToolStripMenuItem
             // 
@@ -448,11 +452,35 @@
             label6.TabIndex = 15;
             label6.Text = "Total Produtos:";
             // 
+            // lbl_valuePVP
+            // 
+            lbl_valuePVP.AutoSize = true;
+            lbl_valuePVP.Location = new Point(87, 447);
+            lbl_valuePVP.Name = "lbl_valuePVP";
+            lbl_valuePVP.Size = new Size(0, 15);
+            lbl_valuePVP.TabIndex = 16;
+            // 
+            // lbl_valueTotalProdutos
+            // 
+            lbl_valueTotalProdutos.AutoSize = true;
+            lbl_valueTotalProdutos.Location = new Point(114, 474);
+            lbl_valueTotalProdutos.Name = "lbl_valueTotalProdutos";
+            lbl_valueTotalProdutos.Size = new Size(0, 15);
+            lbl_valueTotalProdutos.TabIndex = 17;
+            // 
+            // empréstimosToolStripMenuItem
+            // 
+            empréstimosToolStripMenuItem.Name = "empréstimosToolStripMenuItem";
+            empréstimosToolStripMenuItem.Size = new Size(180, 22);
+            empréstimosToolStripMenuItem.Text = "Empréstimos";
+            // 
             // RegistarForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 519);
+            Controls.Add(lbl_valueTotalProdutos);
+            Controls.Add(lbl_valuePVP);
             Controls.Add(label6);
             Controls.Add(lbl_nLabel);
             Controls.Add(label5);
@@ -524,6 +552,9 @@
         private RadioButton rdb_regOferta;
         private Label lbl_nLabel;
         private Label label6;
+        private Label lbl_valuePVP;
+        private Label lbl_valueTotalProdutos;
+        private ToolStripMenuItem empréstimosToolStripMenuItem;
     }
 }
 
