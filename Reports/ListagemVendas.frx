@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/09/2025 17:39:22" ReportInfo.Modified="08/15/2025 18:52:54" ReportInfo.CreatorVersion="2025.2.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <SQLiteDataConnection Name="Connection" ConnectionString="rijcmlqIltkgxALMArhJ2W63qXqyyGEc0+6eLX+WQhymmL+S0bPru2JkDrUFQSajJfWBgDK9GetNOHiTJlV9O8QtguFEpw0QFoxBIqX2mwXG6tHqF8Dej9T5wDw9W3mNXQPhDvv8jwq6yq3+Jqo3OTNBgCRPQ==">
+      <TableDataSource Name="CategoriasProdutos" DataType="System.Int32" Enabled="true" TableName="CategoriasProdutos">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Categoria" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Clientes" DataType="System.Int32" Enabled="true" TableName="Clientes">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Nome" DataType="System.String"/>
+        <Column Name="Morada" DataType="System.String"/>
+        <Column Name="Email" DataType="System.String"/>
+        <Column Name="Telemovel" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Movimentos" DataType="System.Int32" Enabled="true" TableName="Movimentos">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Tipo" DataType="System.Int64"/>
+        <Column Name="ClienteID" DataType="System.Int64"/>
+        <Column Name="DataCriacao" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="MovimentosItens" DataType="System.Int32" Enabled="true" TableName="MovimentosItens" SelectCommand="SELECT&#13;&#10;mi.idProduto,&#13;&#10;p.Nome as ProdutoNome,&#13;&#10;sum(mi.Preco) AS TotalPVP,&#13;&#10;SUM(mi.Quantidade) AS TotalQuantidade&#13;&#10;FROM MovimentosItens mi&#13;&#10;INNER JOIN Movimentos m&#13;&#10;ON m.id = mi.idMovimento&#13;&#10;INNER JOIN Produtos p&#13;&#10;ON p.id = mi.idProduto&#13;&#10;WHERE mi.Tipo = 0&#13;&#10;GROUP BY mi.idProduto;">
+        <Column Name="idProduto" DataType="System.Int64"/>
+        <Column Name="ProdutoNome" DataType="System.String"/>
+        <Column Name="TotalPVP" DataType="System.Decimal"/>
+        <Column Name="TotalQuantidade" DataType="System.Int64"/>
+      </TableDataSource>
+      <TableDataSource Name="Produtos" DataType="System.Int32" Enabled="true" TableName="Produtos">
+        <Column Name="id" DataType="System.Int64"/>
+        <Column Name="Nome" DataType="System.String"/>
+        <Column Name="Categoria" DataType="System.String"/>
+        <Column Name="Preco" DataType="System.Decimal"/>
+        <Column Name="Quantidade" DataType="System.Int64"/>
+      </TableDataSource>
+      <TableDataSource Name="sqlite_sequence" DataType="System.Int32" Enabled="true" TableName="sqlite_sequence">
+        <Column Name="name" DataType="System.Object"/>
+        <Column Name="seq" DataType="System.Object"/>
+      </TableDataSource>
+    </SQLiteDataConnection>
+    <Parameter Name="Conn" DataType="System.String" AsString=""/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="132.3">
+      <TextObject Name="Text1" Left="9.45" Top="9.45" Width="179.55" Height="28.35" Text="GESTORMK" Font="Arial, 20pt, style=Bold"/>
+      <TextObject Name="Text2" Left="9.45" Top="37.8" Width="179.55" Height="18.9" Text="Desenvolvido por Ivo Xavier" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Top="103.95" Width="207.9" Height="28.35" Border.Lines="All" Text="Produto" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text11" Left="207.9" Top="103.95" Width="349.65" Height="28.35" Border.Lines="All" Text="Quantidade" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text12" Left="557.55" Top="103.95" Width="160.65" Height="28.35" Border.Lines="All" Text="P.V.P" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text30" Left="245.7" Top="9.45" Width="255.15" Height="28.35" Text="Listagem Vendas" HorzAlign="Center" Font="Arial, 14pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="134.97" Width="718.2" Height="47.25" DataSource="MovimentosItens">
+      <TextObject Name="Text31" Left="207.9" Width="349.65" Height="18.9" Text="[MovimentosItens.TotalQuantidade]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text32" Left="557.55" Width="160.65" Height="18.9" Text="[MovimentosItens.TotalPVP]" HorzAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Width="207.9" Height="18.9" Text="[MovimentosItens.ProdutoNome]" HorzAlign="Center" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="184.88" Width="718.2" Height="94.5"/>
+  </ReportPage>
+</Report>

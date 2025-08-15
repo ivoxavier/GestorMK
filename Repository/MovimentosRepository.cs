@@ -85,5 +85,21 @@ namespace GestorMK.Repository
             }
         }
 
+
+        public long ListagemVendas()
+        {
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = @"SELECT coalesce(MAX(id),0) + 1 as id FROM Movimentos";
+
+                var proximoId = Convert.ToInt64(command.ExecuteScalar());
+
+                return proximoId;
+            }
+        }
+
     }
 }

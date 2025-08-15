@@ -25,7 +25,7 @@ namespace GestorMK
             InitializeComponent();
 
             var bdd = new CriaBaseDados();
-            bdd.InicializaBD();
+
 
             itensDaFicha = new BindingList<MovimentosItens>();
             itensDaFicha.ListChanged += ItensDaFicha_ListChanged;
@@ -40,11 +40,12 @@ namespace GestorMK
 
             if (Settings.Default.isFirstUsage)
             {
+
                 var bd = new CriaBaseDados();
                 bd.InicializaBD();
 
                 Settings.Default.isFirstUsage = false;
-
+                Settings.Default.Save();
             }
 
 
@@ -196,14 +197,6 @@ namespace GestorMK
             itensDaFicha.Add(novoItem);
 
 
-            foreach (DataGridViewRow row in dgv_rgMovimentos.Rows)
-            {
-
-
-            }
-
-            lbl_valuePVP.Text = novoItem.ToString();
-            lbl_valueTotalProdutos.Text = novoItem.ToString();
 
         }
 
@@ -345,15 +338,18 @@ namespace GestorMK
         private void AtualizarTotais()
         {
 
-            decimal totalPVP = itensDaFicha.Sum(item => item.Preco);
+            // Calcula o total multiplicando o preço pela quantidade para cada item na lista
+            decimal totalPVP = itensDaFicha.Sum(item => item.Preco * item.Quantidade);
 
+            // Opcional: pode também somar o total de unidades
+            int totalUnidades = itensDaFicha.Sum(item => item.Quantidade);
 
-            int totalProdutos = itensDaFicha.Count;
-
-
-
+            // Atualiza a label com o valor total formatado como moeda
             lbl_valuePVP.Text = totalPVP.ToString("C");
-            lbl_valueTotalProdutos.Text = totalProdutos.ToString();
+
+            // Se tiver uma label para o total de produtos/unidades, pode atualizar aqui
+            // lbl_totalUnidades.Text = totalUnidades.ToString(); 
+
         }
 
         private void ItensDaFicha_ListChanged(object sender, ListChangedEventArgs e)
@@ -364,7 +360,42 @@ namespace GestorMK
 
         private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            DialogResult querGuardarPdf = MessageBox.Show("Deseja gerar o relatório em PDF?",
+                                                        "Gerar Relatório", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if (querGuardarPdf == DialogResult.Yes)
+            {
+
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "Ficheiro PDF (*.pdf)|*.pdf";
+                    saveDialog.Title = "Gravar como PDF";
+                    saveDialog.FileName = $"ListagemVendas_{DateTime.Now.ToString()}.pdf";
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+
+                        var servicoDeRelatorios = new GestorMK.Services.RelatorioService();
+                        string minhaConnectionString = MovimentosRepository.ConnectionString;
+                        string nomeDoFicheiroRelatorio = "ListagemVendas.frx";
+                        string caminhoParaGravar = saveDialog.FileName;
+
+                        bool sucesso = servicoDeRelatorios.ExportarListagemParaPDF(minhaConnectionString, nomeDoFicheiroRelatorio, caminhoParaGravar);
+
+                        if (sucesso)
+                        {
+                            MessageBox.Show("Relatório guardado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void acercaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AcercaForm acerca = new AcercaForm();
+
+            acerca.ShowDialog();
         }
     }
 

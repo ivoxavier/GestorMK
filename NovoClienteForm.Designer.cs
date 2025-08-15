@@ -45,6 +45,7 @@
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20.92391F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 79.07609F));
@@ -83,7 +84,7 @@
             label4.Location = new Point(4, 139);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(60, 15);
+            label4.Size = new Size(61, 15);
             label4.TabIndex = 1;
             label4.Text = "Telemovel";
             // 
@@ -149,6 +150,7 @@
             // 
             // btn_Gravar
             // 
+            btn_Gravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_Gravar.Location = new Point(356, 267);
             btn_Gravar.Margin = new Padding(4, 3, 4, 3);
             btn_Gravar.Name = "btn_Gravar";
@@ -187,6 +189,7 @@
             Controls.Add(label5);
             Controls.Add(btn_Gravar);
             Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4, 3, 4, 3);
             Name = "NovoClienteForm";
             Text = "NovoCliente";

@@ -78,6 +78,7 @@
             // 
             // txtBox_nvProdutoNome
             // 
+            txtBox_nvProdutoNome.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBox_nvProdutoNome.Location = new Point(92, 16);
             txtBox_nvProdutoNome.Margin = new Padding(3, 2, 3, 2);
             txtBox_nvProdutoNome.Name = "txtBox_nvProdutoNome";
@@ -115,6 +116,7 @@
             // 
             // btn_nvProdutoCategoria
             // 
+            btn_nvProdutoCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btn_nvProdutoCategoria.Location = new Point(272, 49);
             btn_nvProdutoCategoria.Name = "btn_nvProdutoCategoria";
             btn_nvProdutoCategoria.Size = new Size(107, 23);
@@ -125,6 +127,7 @@
             // 
             // btn_nvProdutoAdicionar
             // 
+            btn_nvProdutoAdicionar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_nvProdutoAdicionar.Location = new Point(293, 173);
             btn_nvProdutoAdicionar.Name = "btn_nvProdutoAdicionar";
             btn_nvProdutoAdicionar.Size = new Size(107, 23);
@@ -148,6 +151,7 @@
             Controls.Add(lbl_nvPreco);
             Controls.Add(lbl_nvProdutoCategoria);
             Controls.Add(lbl_nvProdutoNome);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(3, 2, 3, 2);
             Name = "NovoProdutoForm";
             Text = "Novo Produto";

@@ -37,7 +37,8 @@
             listagensToolStripMenuItem = new ToolStripMenuItem();
             clientesToolStripMenuItem1 = new ToolStripMenuItem();
             produtosToolStripMenuItem1 = new ToolStripMenuItem();
-            manutençaoToolStripMenuItem = new ToolStripMenuItem();
+            empréstimosToolStripMenuItem = new ToolStripMenuItem();
+            acercaToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
             dgv_rgMovimentos = new DataGridView();
             TipoID = new DataGridViewTextBoxColumn();
@@ -66,21 +67,22 @@
             label4 = new Label();
             label5 = new Label();
             lbl_nLabel = new Label();
-            label6 = new Label();
             lbl_valuePVP = new Label();
-            lbl_valueTotalProdutos = new Label();
-            empréstimosToolStripMenuItem = new ToolStripMenuItem();
+            panel2 = new Panel();
+            panel3 = new Panel();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_rgMovimentos).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, listagensToolStripMenuItem, manutençaoToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, produtosToolStripMenuItem, listagensToolStripMenuItem, acercaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 2, 0, 2);
@@ -133,21 +135,28 @@
             // clientesToolStripMenuItem1
             // 
             clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            clientesToolStripMenuItem1.Size = new Size(180, 22);
+            clientesToolStripMenuItem1.Size = new Size(143, 22);
             clientesToolStripMenuItem1.Text = "Vendas";
             clientesToolStripMenuItem1.Click += clientesToolStripMenuItem1_Click;
             // 
             // produtosToolStripMenuItem1
             // 
             produtosToolStripMenuItem1.Name = "produtosToolStripMenuItem1";
-            produtosToolStripMenuItem1.Size = new Size(180, 22);
+            produtosToolStripMenuItem1.Size = new Size(143, 22);
             produtosToolStripMenuItem1.Text = "Ofertas";
             // 
-            // manutençaoToolStripMenuItem
+            // empréstimosToolStripMenuItem
             // 
-            manutençaoToolStripMenuItem.Name = "manutençaoToolStripMenuItem";
-            manutençaoToolStripMenuItem.Size = new Size(86, 20);
-            manutençaoToolStripMenuItem.Text = "Manutenção";
+            empréstimosToolStripMenuItem.Name = "empréstimosToolStripMenuItem";
+            empréstimosToolStripMenuItem.Size = new Size(143, 22);
+            empréstimosToolStripMenuItem.Text = "Empréstimos";
+            // 
+            // acercaToolStripMenuItem
+            // 
+            acercaToolStripMenuItem.Name = "acercaToolStripMenuItem";
+            acercaToolStripMenuItem.Size = new Size(55, 20);
+            acercaToolStripMenuItem.Text = "Acerca";
+            acercaToolStripMenuItem.Click += acercaToolStripMenuItem_Click;
             // 
             // panel1
             // 
@@ -161,9 +170,9 @@
             // 
             // dgv_rgMovimentos
             // 
+            dgv_rgMovimentos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgv_rgMovimentos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_rgMovimentos.Columns.AddRange(new DataGridViewColumn[] { TipoID, idMovimento, TipoDescricao, NomeProduto, Produto, idProduto, Preco, Quantidade });
-            dgv_rgMovimentos.Dock = DockStyle.Fill;
             dgv_rgMovimentos.Location = new Point(0, 0);
             dgv_rgMovimentos.Margin = new Padding(4, 3, 4, 3);
             dgv_rgMovimentos.Name = "dgv_rgMovimentos";
@@ -230,8 +239,8 @@
             // 
             // btn_regFecharFicha
             // 
-            btn_regFecharFicha.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_regFecharFicha.Location = new Point(832, 456);
+            btn_regFecharFicha.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btn_regFecharFicha.Location = new Point(845, 466);
             btn_regFecharFicha.Margin = new Padding(4, 3, 4, 3);
             btn_regFecharFicha.Name = "btn_regFecharFicha";
             btn_regFecharFicha.Size = new Size(88, 50);
@@ -337,7 +346,7 @@
             groupBox1.Margin = new Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
-            groupBox1.Size = new Size(316, 52);
+            groupBox1.Size = new Size(252, 52);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "Tipo";
@@ -379,10 +388,11 @@
             // 
             // btn_regAdicionar
             // 
-            btn_regAdicionar.Location = new Point(337, 129);
+            btn_regAdicionar.Dock = DockStyle.Left;
+            btn_regAdicionar.Location = new Point(0, 0);
             btn_regAdicionar.Margin = new Padding(4, 3, 4, 3);
             btn_regAdicionar.Name = "btn_regAdicionar";
-            btn_regAdicionar.Size = new Size(88, 27);
+            btn_regAdicionar.Size = new Size(72, 38);
             btn_regAdicionar.TabIndex = 8;
             btn_regAdicionar.Text = "Adicionar";
             btn_regAdicionar.UseVisualStyleBackColor = true;
@@ -390,7 +400,7 @@
             // 
             // txtBox_nFicha
             // 
-            txtBox_nFicha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBox_nFicha.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBox_nFicha.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             txtBox_nFicha.Location = new Point(832, 97);
             txtBox_nFicha.Margin = new Padding(4, 3, 4, 3);
@@ -437,57 +447,51 @@
             // lbl_nLabel
             // 
             lbl_nLabel.AutoSize = true;
-            lbl_nLabel.Location = new Point(21, 447);
+            lbl_nLabel.Dock = DockStyle.Left;
+            lbl_nLabel.Location = new Point(0, 0);
             lbl_nLabel.Name = "lbl_nLabel";
             lbl_nLabel.Size = new Size(60, 15);
             lbl_nLabel.TabIndex = 14;
             lbl_nLabel.Text = "Total PVP:";
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(21, 474);
-            label6.Name = "label6";
-            label6.Size = new Size(87, 15);
-            label6.TabIndex = 15;
-            label6.Text = "Total Produtos:";
-            // 
             // lbl_valuePVP
             // 
+            lbl_valuePVP.Anchor = AnchorStyles.Left;
             lbl_valuePVP.AutoSize = true;
-            lbl_valuePVP.Location = new Point(87, 447);
+            lbl_valuePVP.Location = new Point(66, 0);
             lbl_valuePVP.Name = "lbl_valuePVP";
             lbl_valuePVP.Size = new Size(0, 15);
             lbl_valuePVP.TabIndex = 16;
             // 
-            // lbl_valueTotalProdutos
+            // panel2
             // 
-            lbl_valueTotalProdutos.AutoSize = true;
-            lbl_valueTotalProdutos.Location = new Point(114, 474);
-            lbl_valueTotalProdutos.Name = "lbl_valueTotalProdutos";
-            lbl_valueTotalProdutos.Size = new Size(0, 15);
-            lbl_valueTotalProdutos.TabIndex = 17;
+            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel2.Controls.Add(lbl_nLabel);
+            panel2.Controls.Add(lbl_valuePVP);
+            panel2.Location = new Point(14, 439);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(209, 77);
+            panel2.TabIndex = 17;
             // 
-            // empréstimosToolStripMenuItem
+            // panel3
             // 
-            empréstimosToolStripMenuItem.Name = "empréstimosToolStripMenuItem";
-            empréstimosToolStripMenuItem.Size = new Size(180, 22);
-            empréstimosToolStripMenuItem.Text = "Empréstimos";
+            panel3.Controls.Add(btn_regAdicionar);
+            panel3.Location = new Point(273, 119);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(187, 38);
+            panel3.TabIndex = 18;
             // 
             // RegistarForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 519);
-            Controls.Add(lbl_valueTotalProdutos);
-            Controls.Add(lbl_valuePVP);
-            Controls.Add(label6);
-            Controls.Add(lbl_nLabel);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(txtBox_nFicha);
-            Controls.Add(btn_regAdicionar);
             Controls.Add(groupBox1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(btn_regFecharFicha);
@@ -506,6 +510,9 @@
             tableLayoutPanel1.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
 
@@ -516,7 +523,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manutençaoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem novoClienteToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_regFecharFicha;
@@ -551,10 +557,11 @@
         private DataGridViewTextBoxColumn Quantidade;
         private RadioButton rdb_regOferta;
         private Label lbl_nLabel;
-        private Label label6;
         private Label lbl_valuePVP;
-        private Label lbl_valueTotalProdutos;
         private ToolStripMenuItem empréstimosToolStripMenuItem;
+        private Panel panel2;
+        private Panel panel3;
+        private ToolStripMenuItem acercaToolStripMenuItem;
     }
 }
 
