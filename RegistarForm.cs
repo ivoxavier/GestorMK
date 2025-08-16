@@ -24,15 +24,11 @@ namespace GestorMK
         {
             InitializeComponent();
 
-            string s = "";
-
 
             itensDaFicha = new BindingList<MovimentosItens>();
             itensDaFicha.ListChanged += ItensDaFicha_ListChanged;
             dgv_rgMovimentos.DataSource = itensDaFicha;
 
-            var bdd = new CriaBaseDados();
-            bdd.InicializaBD();
 
             if (Settings.Default.isFirstUsage)
             {
