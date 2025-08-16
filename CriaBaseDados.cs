@@ -35,72 +35,63 @@ namespace GestorMK
 
                     var cmd = connection.CreateCommand();
 
-                    cmd.CommandText = @" CREATE TABLE IF NOT EXISTS Clientes (
-                    ""id""	INTEGER NOT NULL UNIQUE,
-	                ""Nome""	TEXT NOT NULL,
-	                ""Morada""	TEXT NOT NULL,
-	                ""Email""	TEXT,
-	                ""Telemovel""	TEXT,
-	                PRIMARY KEY(""id"" AUTOINCREMENT)); 
-
-                    
-";
+                    cmd.CommandText = @"
+                    CREATE TABLE IF NOT EXISTS Clientes (
+                    ""id""   INTEGER PRIMARY KEY AUTOINCREMENT,
+                    ""Nome""   TEXT NOT NULL,
+                    ""Morada"" TEXT NOT NULL,
+                    ""Email""   TEXT,
+                    ""Telemovel"" TEXT);";
 
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = @"
                             CREATE TABLE IF NOT EXISTS Produtos (
-	                                ""id""	INTEGER NOT NULL UNIQUE,
-	                                ""Nome""	TEXT NOT NULL,
-	                                ""Categoria""	TEXT NOT NULL,
-	                                ""Preco""	NUMERIC NOT NULL,
-	                                ""Quantidade""	INTEGER NOT NULL,
-	                                PRIMARY KEY(""id"" AUTOINCREMENT));
+                            ""id""    INTEGER PRIMARY KEY AUTOINCREMENT,
+                            ""Nome""  TEXT NOT NULL,
+                            ""Categoria""   TEXT NOT NULL,
+                            ""Preco""       NUMERIC NOT NULL,
+                            ""Quantidade""  INTEGER NOT NULL);";
 
-";
                     cmd.ExecuteNonQuery();
 
 
                     cmd.CommandText = @"
                             CREATE TABLE IF NOT EXISTS CategoriasProdutos (
-                            ""id""    INTEGER NOT NULL UNIQUE,
-                            ""Categoria"" TEXT NOT NULL UNIQUE,
-                            PRIMARY KEY(""id"" AUTOINCREMENT));
+                            ""id""  INTEGER PRIMARY KEY AUTOINCREMENT,
+                            ""Categoria"" TEXT NOT NULL UNIQUE);
 
-                            INSERT INTO CategoriasProdutos (Categoria) 
-                            VALUES
-                            ('Cuidados do Rosto'),
-                            ('Maquilhagem'),
-                            ('Corpo e Sol'),
-                            ('Fragâncias'),
-                            ('Desconhecido')
-                                                            ";
-                    cmd.ExecuteNonQuery();
-
-
-
-                    cmd.CommandText = @"
-                           CREATE TABLE IF NOT EXISTS Movimentos  (
-	                        ""id""	INTEGER NOT NULL,
-	                        ""ClienteID""	INTEGER NOT NULL,
-	                        ""DataCriacao""	TEXT NOT NULL DEFAULT CURRENT_DATE',
-	                        PRIMARY KEY(""id"" AUTOINCREMENT));";
-
+   
+                         INSERT OR IGNORE INTO CategoriasProdutos (Categoria)
+                         VALUES
+                         ('Cuidados do Rosto'),
+                         ('Maquilhagem'),
+                         ('Corpo e Sol'),
+                         ('Fragâncias'),
+                        ('Desconhecido');";
 
                     cmd.ExecuteNonQuery();
 
 
 
                     cmd.CommandText = @"
-                           CREATE TABLE IF NOT EXISTS MovimentosItens (
-	                       ""id""	INTEGER NOT NULL,
-	                       ""idMovimento""	INTEGER NOT NULL,
-	                       ""idProduto""	INTEGER NOT NULL,
-	                       ""Preco""	NUMERIC NOT NULL,
-	                       ""Quantidade""	INTEGER NOT NULL,
-                           ""Tipo""	INTEGER NOT NULL
-	                       PRIMARY KEY(""id"" AUTOINCREMENT));";
+                         CREATE TABLE IF NOT EXISTS Movimentos (
+                        ""id"" INTEGER PRIMARY KEY AUTOINCREMENT,
+                        ""ClienteID"" INTEGER NOT NULL,
+                        ""DataCriacao"" TEXT NOT NULL DEFAULT CURRENT_DATE);";
 
+                    cmd.ExecuteNonQuery();
+
+
+
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS MovimentosItens (
+                        ""id"" INTEGER PRIMARY KEY AUTOINCREMENT,
+                        ""idMovimento"" INTEGER NOT NULL,
+                        ""idProduto"" INTEGER NOT NULL,
+                        ""Preco"" NUMERIC NOT NULL,
+                        ""Quantidade"" INTEGER NOT NULL,
+                        ""Tipo"" INTEGER NOT NULL);";
 
                     cmd.ExecuteNonQuery();
 
