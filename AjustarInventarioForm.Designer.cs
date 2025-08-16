@@ -96,7 +96,7 @@
             // 
             // btn_ajInvGravar
             // 
-            btn_ajInvGravar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btn_ajInvGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_ajInvGravar.Location = new Point(723, 404);
             btn_ajInvGravar.Name = "btn_ajInvGravar";
             btn_ajInvGravar.Size = new Size(77, 46);
