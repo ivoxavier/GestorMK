@@ -330,17 +330,16 @@ namespace GestorMK
         private void AtualizarTotais()
         {
 
-            // Calcula o total multiplicando o preço pela quantidade para cada item na lista
+            
             decimal totalPVP = itensDaFicha.Sum(item => item.Preco * item.Quantidade);
 
-            // Opcional: pode também somar o total de unidades
+       
             int totalUnidades = itensDaFicha.Sum(item => item.Quantidade);
 
-            // Atualiza a label com o valor total formatado como moeda
+           
             lbl_valuePVP.Text = totalPVP.ToString("C");
 
-            // Se tiver uma label para o total de produtos/unidades, pode atualizar aqui
-            // lbl_totalUnidades.Text = totalUnidades.ToString(); 
+          
 
         }
 
@@ -360,9 +359,10 @@ namespace GestorMK
 
                 using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
+                    string carimboDoTempo = DateTime.Now.ToString("yyyy_MM_dd_HHmm");
                     saveDialog.Filter = "Ficheiro PDF (*.pdf)|*.pdf";
                     saveDialog.Title = "Gravar como PDF";
-                    saveDialog.FileName = $"ListagemVendas_{DateTime.Now.ToString()}.pdf";
+                    saveDialog.FileName = $"ListagemVendas_{carimboDoTempo}.pdf";
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -388,6 +388,74 @@ namespace GestorMK
             AcercaForm acerca = new AcercaForm();
 
             acerca.ShowDialog();
+        }
+
+        private void produtosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DialogResult querGuardarPdf = MessageBox.Show("Deseja gerar o relatório em PDF?",
+                                                       "Gerar Relatório", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (querGuardarPdf == DialogResult.Yes)
+            {
+
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    string carimboDoTempo = DateTime.Now.ToString("yyyy_MM_dd_HHmm");
+                    saveDialog.Filter = "Ficheiro PDF (*.pdf)|*.pdf";
+                    saveDialog.Title = "Gravar como PDF";
+                    saveDialog.FileName = $"ListagemOfertas_{carimboDoTempo}.pdf";
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+
+                        var servicoDeRelatorios = new GestorMK.Services.RelatorioService();
+                        string minhaConnectionString = MovimentosRepository.ConnectionString;
+                        string nomeDoFicheiroRelatorio = "ListagemOfertas.frx";
+                        string caminhoParaGravar = saveDialog.FileName;
+
+                        bool sucesso = servicoDeRelatorios.ExportarListagemParaPDF(minhaConnectionString, nomeDoFicheiroRelatorio, caminhoParaGravar);
+
+                        if (sucesso)
+                        {
+                            MessageBox.Show("Relatório guardado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void empréstimosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult querGuardarPdf = MessageBox.Show("Deseja gerar o relatório em PDF?",
+                                                       "Gerar Relatório", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (querGuardarPdf == DialogResult.Yes)
+            {
+
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    string carimboDoTempo = DateTime.Now.ToString("yyyy_MM_dd_HHmm");
+                    saveDialog.Filter = "Ficheiro PDF (*.pdf)|*.pdf";
+                    saveDialog.Title = "Gravar como PDF";
+                    saveDialog.FileName = $"ListagemEmprestimos_{carimboDoTempo}.pdf";
+
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+
+                        var servicoDeRelatorios = new GestorMK.Services.RelatorioService();
+                        string minhaConnectionString = MovimentosRepository.ConnectionString;
+                        string nomeDoFicheiroRelatorio = "ListagemEmprestimos.frx";
+                        string caminhoParaGravar = saveDialog.FileName;
+
+                        bool sucesso = servicoDeRelatorios.ExportarListagemParaPDF(minhaConnectionString, nomeDoFicheiroRelatorio, caminhoParaGravar);
+
+                        if (sucesso)
+                        {
+                            MessageBox.Show("Relatório guardado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
         }
     }
 
