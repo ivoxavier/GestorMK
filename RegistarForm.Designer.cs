@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistarForm));
             menuStrip1 = new MenuStrip();
             clientesToolStripMenuItem = new ToolStripMenuItem();
             novoClienteToolStripMenuItem = new ToolStripMenuItem();
@@ -450,7 +451,7 @@
             lbl_nLabel.Dock = DockStyle.Left;
             lbl_nLabel.Location = new Point(0, 0);
             lbl_nLabel.Name = "lbl_nLabel";
-            lbl_nLabel.Size = new Size(60, 15);
+            lbl_nLabel.Size = new Size(59, 15);
             lbl_nLabel.TabIndex = 14;
             lbl_nLabel.Text = "Total PVP:";
             // 
@@ -497,6 +498,7 @@
             Controls.Add(btn_regFecharFicha);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.Disable;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4, 3, 4, 3);
